@@ -2,12 +2,31 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>页面跳转</title>
+    <title>根据域名自动跳转</title>
     <script type="text/javascript">
-        // 页面载入后立即跳转
-        window.location.href = "https://sq325.github.io/kikyo-blog/";
+        window.onload = function() {
+            // 获取当前页面的URL
+            var currentUrl = window.location.href;
+            
+            // 解析URL以获取当前的域名和路径
+            var parser = document.createElement('a');
+            parser.href = currentUrl;
+            
+            var currentDomain = parser.hostname;
+            var currentPath = parser.pathname + parser.search + parser.hash;
+
+            // 定义新的域名
+            var newDomain = "sq325.github.io/kikyo-blog/"; // 修改为你想要跳转的域名
+
+            // 构建新的URL
+            var newUrl = parser.protocol + "//" + newDomain + currentPath;
+
+            // 跳转到新的URL
+            window.location.href = newUrl;
+        };
     </script>
 </head>
 <body>
+    <p>页面正在跳转，请稍候...</p>
 </body>
 </html>
